@@ -1,7 +1,7 @@
 #ifndef Actuator_H
 #define Actuator_H
 
-#include "Arduino.h"
+#define clamp(x,a,b) (x<a?a:(x>b?b:x))
 
 class Actuator{
   protected:

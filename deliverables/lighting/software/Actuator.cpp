@@ -3,9 +3,9 @@
 
 /**
  * Constructor. 
- * @param name - Meaningful, readable name of the sensor.
+ * @param name - Meaningful, readable name of the actuator.
  * @param id - Identifying name of the associated hardware.
- * @param evname - Name of the environment variable the sensor records.
+ * @param evname - Name of the environment variable the actuator changes.
  **/
 Actuator::Actuator(String name, String id, String evname){
     this->id = id;

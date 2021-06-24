@@ -4,14 +4,10 @@
 #include "K30.h"
 #include "FloatSensor.h"
 #include "Scale.h"
-// #include "LED.h"
-// #include "Actuator.h"
 
 //MACRO DEFINITIONS
 #define NUM_SENSORS 5
 #define FLOATSENSOR_PIN 5
-// #define NUM_ACTUATORS 1
-// #define LED_PIN 4
 #define REVISION 0
 
 // Sensors
@@ -22,9 +18,6 @@ K30 k30;
 Scale scale;
 FloatSensor fs = FloatSensor(FLOATSENSOR_PIN);
 
-// Actuators
-// LED led(LED_PIN);
-
 Sensor *sensors [NUM_SENSORS] = {
     &temp,
     &hum,
@@ -32,10 +25,6 @@ Sensor *sensors [NUM_SENSORS] = {
     &fs,
     &scale
 };
-
-// Actuator* actuators [NUM_ACTUATORS] = {
-//     &led
-// };
 
 void setup()
 {
@@ -80,10 +69,6 @@ void loop()
             Serial.println("}}");
         }
     }
-
-    // for(int i = 0; i < NUM_ACTUATORS; i++){
-    //     actuators[i]->updateActuator();
-    // }
     delay(10);
 }
 
@@ -103,18 +88,6 @@ bool handleInstruction(String in){
             scale.calibrate(value);
             return true;
         }
-        // for(int i = 0; i < NUM_ACTUATORS; i++){
-        //     if(var.equals(actuators[i]->evname)){
-        //         Serial.print("{\"type\":\"debug\",\"msg\":\"Actuator '");
-        //         Serial.print(actuators[i]->name);
-        //         Serial.print("' target set to ");
-        //         Serial.print(value);
-        //         Serial.println(".\"}");
-        //         actuators[i]->target = value;
-        //         return true;
-        //     }
-        // }
-
         Serial.print("{\"type\":\"error\",\"msg\":\"Unknown target '");
         Serial.print(var);
         Serial.println("'\"}");
@@ -186,19 +159,5 @@ bool post(){
             Serial.println("' initialized successfully.\"}");
         }
     }
-
-    // for(int i = 0; i < NUM_ACTUATORS; i++){
-    //     bool latest = actuators[i]->begin();
-    //     success &= latest;
-    //     if(!latest){
-    //         Serial.print("{\"type\":\"error\",\"msg\":\"Failed to initialize actuator '");
-    //         Serial.print(actuators[i]->name);
-    //         Serial.println("'. Check wiring.\"}");
-    //     } else {
-    //         Serial.print("{\"type\":\"debug\",\"msg\":\"Actuator '");
-    //         Serial.print(actuators[i]->name);
-    //         Serial.println("' initialized successfully.\"}");
-    //     }
-    // }
     return success;
 }
